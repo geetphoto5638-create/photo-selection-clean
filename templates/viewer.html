@@ -1,0 +1,17 @@
+<h2>Client: {{ client }}</h2>
+
+<form method="post" action="/save">
+    <input type="hidden" name="client" value="{{ client }}">
+
+    {% for file in files %}
+        <div style="margin-bottom:20px;">
+            <p>{{ file.number }} - {{ file.name }}</p>
+            <img src="https://drive.google.com/uc?id={{ file.id }}" width="200">
+            <br>
+            <input type="checkbox" name="photos" value="{{ file.name }}">
+            Select
+        </div>
+    {% endfor %}
+
+    <button type="submit">Save Selection</button>
+</form>

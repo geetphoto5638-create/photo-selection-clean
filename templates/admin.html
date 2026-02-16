@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+
+<h2>Clients Status</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Client</th>
+        <th>Expiry</th>
+        <th>Index</th>
+    </tr>
+
+    {% for name, data in clients.items() %}
+    <tr>
+        <td>{{ name }}</td>
+        <td>{{ data.expiry }}</td>
+        <td>{{ data.index }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
