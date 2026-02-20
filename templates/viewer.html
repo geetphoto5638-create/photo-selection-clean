@@ -1,17 +1,30 @@
-<h2>Client: {{ client }}</h2>
+<h2>Select Photos - {{client}}</h2>
 
-<form method="post" action="/save">
-    <input type="hidden" name="client" value="{{ client }}">
+<form method="POST" action="/save">
+    <input type="hidden" name="client" value="{{client}}">
 
-    {% for file in files %}
-        <div style="margin-bottom:20px;">
-            <p>{{ file.number }} - {{ file.name }}</p>
-            <img src="https://drive.google.com/uc?id={{ file.id }}" width="200">
-            <br>
-            <input type="checkbox" name="photos" value="{{ file.name }}">
-            Select
+    {% for f in files %}
+        <div style="display:inline-block; margin:10px; text-align:center;">
+            
+            <img 
+                src="https://drive.google.com/thumbnail?id={{ f.id }}&sz=w800"
+                width="250"
+                style="pointer-events:none; user-select:none;"
+                draggable="false"
+            ><br>
+            
+            <input type="checkbox" name="photos" value="{{ f.name }}">
+            
+            <p>{{ f.name }}</p>
+
         </div>
     {% endfor %}
 
+    <br><br>
     <button type="submit">Save Selection</button>
 </form>
+
+<script>
+    // Right click disable
+    document.addEventListener("contextmenu", event => event.preventDefault());
+</script>
